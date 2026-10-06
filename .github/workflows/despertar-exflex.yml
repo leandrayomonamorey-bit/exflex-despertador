@@ -1,0 +1,15 @@
+name: Despertar Exflex
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # cada 6 horas (hora UTC)
+  workflow_dispatch:         # permite ejecutarlo a mano desde la pestaña Actions
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hacer una petición al Space de Hugging Face
+        run: |
+          echo "Despertando Exflex..."
+          curl -sS -o /dev/null -w "Respuesta HTTP: %{http_code}\n" --max-time 120 --retry 2 --retry-delay 10 https://leandrayomonamorey-exflex.hf.space
